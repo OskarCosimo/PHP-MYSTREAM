@@ -2,7 +2,7 @@
  * MYSTREAM
  * @usage: MYSTREAM($localpath)
  * created and edited for MYETV.TV
- * file must be protected with proper server-side technology
+ * file must be protected with proper server-side technology, use slash or backslash regarding the environment
  */
 class MYSTREAM {
     private $path = "";
