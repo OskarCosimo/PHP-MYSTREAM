@@ -7,7 +7,7 @@
 class MYSTREAM {
     private $path = "";
     private $stream = "";
-    private $buffer = 102400;
+    private $buffer = 200000;
     private $start  = -1;
     private $end    = -1;
     private $size   = 0;
@@ -68,6 +68,7 @@ class MYSTREAM {
             $this->end = $c_end;
             $length = $this->end - $this->start + 1;
             fseek($this->playMYstream, $this->start);
+            session_write_close();
             header('HTTP/1.1 206 Partial Content');
             header("Content-Length: ".$length);
             header("Content-Range: bytes $this->start-$this->end/".$this->size);
