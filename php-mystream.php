@@ -1,11 +1,16 @@
 /**
  * MYSTREAM
- * @usage: MYSTREAM($localpath)
+ * @usage:
+$filepathlocal = "c:\test.mp4";
+$stream = new MYSTREAM($filepathlocal);
+$stream->start();
  * created and edited for MYETV.TV
  * file must be protected with proper server-side technology
  */
 class MYSTREAM {
+//the local path of the environment example c:\..
     private $path = "";
+//the default stream name (if available) example test.mp4
     private $stream = "";
     private $buffer = 200000;
     private $start  = -1;
@@ -71,14 +76,15 @@ class MYSTREAM {
             $this->end = $c_end;
             $length = $this->end - $this->start + 1;
             fseek($this->playMYstream, $this->start);
-            session_write_close();
             header('HTTP/1.1 206 Partial Content');
             header("Content-Length: ".$length);
             header("Content-Range: bytes $this->start-$this->end/".$this->size);
+            session_write_close();
         }
         else
         {
             header("Content-Length: ".$this->size);
+            session_write_close();
         }  
     }
 
