@@ -83,7 +83,7 @@ if (isset($_SERVER['HTTP_RANGE'])) {
     echo stream_get_contents($fp,$start);
     else:
     //@fseek($fp, $start);
-    //echo stream_get_contents($fp,$start);
+    echo stream_get_contents($fp,$start);
     endif;
 
     
@@ -100,7 +100,7 @@ if(empty($start)):
     endif;
     //1024
     //2048
-$buffer = 4092 * 8;
+$buffer = 1024 * 8;
 while(!feof($fp) && ($p = ftell($fp)) <= $end) {
 
     if ($p + $buffer > $end) {
