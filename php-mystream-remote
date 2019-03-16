@@ -82,7 +82,9 @@ if (isset($_SERVER['HTTP_RANGE'])) {
     if (fseek($fp, $start, SEEK_CUR) === -1):
     echo stream_get_contents($fp,$start);
     else:
-    //@fseek($fp, $start);
+    //with seek (if stream support)
+    //echo stream_get_contents($fp,200000,$start);
+    //without seek
     echo stream_get_contents($fp,$start);
     endif;
 
@@ -111,7 +113,7 @@ while(!feof($fp) && ($p = ftell($fp)) <= $end) {
     echo "file not supported";
     else:
     set_time_limit(0);
-    //with seek
+    //with seek (if stream support)
     //echo stream_get_contents($fp,$buffer,$start);
     //without seek
     echo stream_get_contents($fp,$buffer);
